@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matthew Gibson-Lopez - UTSA Computer Science</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header {
+            background-color: #032044;
+            color: white;
+            padding: 2rem 0;
+            border-bottom: 4px solid #F15A22;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav li {
+            margin-right: 2rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 0;
+            color: #032044;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #F15A22;
+        }
+
+        nav a.active {
+            color: #F15A22;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: #032044;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        h3 {
+            color: #032044;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .research-card {
+            background-color: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: 4px;
+            border-left: 3px solid #F15A22;
+        }
+
+        .research-card h4 {
+            color: #032044;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-photo {
+            float: right;
+            margin: 0 0 1.5rem 1.5rem;
+            max-width: 250px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .video-container {
+            margin-top: 2rem;
+            max-width: 700px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            background-color: #032044;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #F15A22;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav li {
+                margin-right: 1rem;
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+            }
+
+            .profile-photo {
+                float: none;
+                margin: 0 auto 1.5rem auto;
+                max-width: 200px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Matthew Gibson-Lopez</h1>
+            <p>Associate Professor, Department of Computer Science</p>
+            <p>The University of Texas at San Antonio</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="workforce.html">Workforce Development</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2>About</h2>
+            <div class="profile-photo">
+                <img src="images/profile-photo.jpg" alt="Matthew Gibson-Lopez">
+            </div>
+            <p>
+                I am an Associate Professor in the Department of Computer Science at The University of Texas at San Antonio, 
+                where I focus on quantum computing research and education. After nearly 20 years working in computational 
+                geometry, I transitioned to quantum computing in 2024, bringing a strong algorithmic foundation to this 
+                emerging field.
+            </p>
+            <p>
+                The pivot into quantum computing is challenging and takes perseverance for students who do not have a 
+                background in quantum mechanics. One of my main goals is to open up pathways for students who have had 
+                linear algebra but not quantum mechanics. My approach focuses on the underlying linear algebra model that 
+                underpins quantum mechanics, teaching practical quantum computing programming, including hybrid quantum-classical 
+                approaches which the community projects to be the future model of high performance computing.
+            </p>
+            
+            <div class="video-container">
+                <h3>Introduction to Our Quantum Computing Program</h3>
+                <div class="video-wrapper">
+                    <!-- Replace YOUTUBE_VIDEO_ID with your actual video ID -->
+                    <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="research-interests">
+            <h2>Research Interests</h2>
+            <div class="research-areas">
+                <div class="research-card">
+                    <h4>Hybrid Quantum-Classical Computing</h4>
+                </div>
+                <div class="research-card">
+                    <h4>Quantum Combinatorial Optimization</h4>
+                </div>
+                <div class="research-card">
+                    <h4>Quantum Machine Learning</h4>
+                </div>
+                <div class="research-card">
+                    <h4>Quantum Hardware Security</h4>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>
+                Email: [your.email@utsa.edu]<br>
+                Office: [Your Office Location]<br>
+                GitHub: [your-github-username]
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Matthew Gibson-Lopez | <a href="https://www.utsa.edu/cs/">UTSA Computer Science</a></p>
+        </div>
+    </footer>
+</body>
+</html>
