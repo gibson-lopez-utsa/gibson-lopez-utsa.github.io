@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms Seminar - Matthew Gibson-Lopez</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header {
+            background-color: #032044;
+            color: white;
+            padding: 2rem 0;
+            border-bottom: 4px solid #F15A22;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav li {
+            margin-right: 2rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 0;
+            color: #032044;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #F15A22;
+        }
+
+        nav a.active {
+            color: #F15A22;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: #032044;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .seminar-info {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 3px solid #F15A22;
+            margin-bottom: 2rem;
+        }
+
+        .seminar-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .seminar-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .schedule {
+            margin-top: 2rem;
+        }
+
+        .talk-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .talk-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .talk-header {
+            padding: 1.25rem;
+            cursor: pointer;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .talk-header:hover {
+            background-color: #f8f9fa;
+        }
+
+        .talk-header-content {
+            flex: 1;
+        }
+
+        .talk-date {
+            font-weight: 600;
+            color: #032044;
+            margin-bottom: 0.25rem;
+        }
+
+        .talk-speaker {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .talk-title {
+            color: #666;
+            font-style: italic;
+        }
+
+        .talk-status {
+            font-size: 0.9rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            white-space: nowrap;
+            align-self: flex-start;
+        }
+
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-upcoming {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-no-talk {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+
+        .expand-icon {
+            color: #F15A22;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            margin-left: 0.5rem;
+        }
+
+        .talk-item.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .talk-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f8f9fa;
+        }
+
+        .talk-details-content {
+            padding: 1.25rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .talk-details h4 {
+            color: #032044;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .talk-abstract {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .talk-slides {
+            margin-top: 1rem;
+        }
+
+        .talk-slides a {
+            color: #F15A22;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .talk-slides a:hover {
+            text-decoration: underline;
+        }
+
+        .no-talk-message {
+            padding: 1.25rem;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #032044;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #F15A22;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav li {
+                margin-right: 1rem;
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+            }
+
+            .talk-header {
+                flex-direction: column;
+            }
+
+            .talk-status {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Matthew Gibson-Lopez</h1>
+            <p>Associate Professor, Department of Computer Science</p>
+            <p>The University of Texas at San Antonio</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="workforce.html">Workforce Development</a></li>
+            <li><a href="seminar_2025fall.html" class="active">Algorithms Seminar</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="seminar">
+            <h2>Algorithms Seminar - Fall 2025</h2>
+            
+            <div class="seminar-info">
+                <p>
+                    The Algorithms Seminar features roughly bi-weekly talks on topics related to algorithms and computational methods. 
+                    The topics are anything related to algorithms. We currently have in-house expertise in neuromorphic algorithms, 
+                    quantum algorithms, computational geometry, optimization algorithms, coding based cryptography, symbolic computation, 
+                    randomized numerical methods, reinforcement learning, and parallel algorithms.
+                </p>
+                <p style="margin-top: 1rem;">
+                    <strong>Time:</strong> Fridays, 1:00pm - 2:00pm<br>
+                    <strong>Location:</strong> Large Conference Room, NPB 3.108A, Main Campus
+                </p>
+            </div>
+
+            <div class="schedule">
+                <!-- September 12 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, September 12, 2025</div>
+                            <div class="talk-speaker">Matthew Gibson-Lopez, UT San Antonio</div>
+                            <div class="talk-title">An Introduction to Quantum Speedups: How Superposition Creates Computational Advantages</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Quantum computing has generated significant excitement for its potential to solve certain problems 
+                                exponentially faster than classical computers, but the underlying physics often makes the field seem 
+                                inaccessible to algorithms researchers. This talk provides a streamlined introduction to quantum 
+                                algorithms designed specifically for computer scientists and mathematicians. We'll develop a minimal 
+                                mathematical framework that captures the essential computational features of quantum systems while 
+                                glossing over physical details. Through a concrete example of a simple function evaluation problem, 
+                                we'll see how quantum superposition can reduce the number of queries needed to solve a problem—providing 
+                                genuine computational advantage with elegant mathematical reasoning. The presentation assumes familiarity 
+                                with classical algorithms but no prior knowledge of quantum mechanics or quantum computing.
+                            </div>
+                            <!-- Uncomment when slides are available
+                            <div class="talk-slides">
+                                <a href="slides/2025-09-12-gibson-lopez.pdf" target="_blank">📄 View Slides</a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- September 19 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, September 19, 2025</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                <!-- September 26 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, September 26, 2025</div>
+                            <div class="talk-speaker">William Severa, UT San Antonio</div>
+                            <div class="talk-title">Ready, Set, Spike! Using Spike Timing in a Neuromorphic Computational Model</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Computer processors inspired by the human brain, known as neuromorphic computers, are often hailed 
+                                for energy efficient AI/ML computation, but at an architectural level they also offer a unique 
+                                computational model that's event-driven and massively parallel. These properties distinguish 
+                                neuromorphic algorithm design from traditional algorithm design, offering potential theoretical and 
+                                practical benefits. In this seminar, Dr. Severa will (1) provide an overview of neuromorphic computing, 
+                                (2) discuss a computational viewpoint for spiking neural networks on neuromorphic architectures, and 
+                                (3) build mathematically rigorous spiking neural algorithms for classic computer science tasks such as 
+                                sorting, shortest path, and triangle finding.
+                            </div>
+                            <!-- Uncomment when slides are available
+                            <div class="talk-slides">
+                                <a href="slides/2025-09-26-severa.pdf" target="_blank">📄 View Slides</a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- October 3 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, October 3, 2025</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                <!-- October 10 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, October 10, 2025</div>
+                            <div class="talk-speaker">Huck Bennett, University of Colorado Boulder</div>
+                            <div class="talk-title">The Code Equivalence Problem: New Algorithms and Reductions</div>
+                        </div>
+                        <span class="talk-status status-upcoming">Upcoming</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                The Linear Code Equivalence Problem (LCE) asks whether there is a linear isometry mapping one linear 
+                                code to another. In this talk, I will first describe new (provable) algorithms for LCE and its variant, 
+                                the Permutation Code Equivalence Problem (PCE). In particular, I will describe a randomized algorithm 
+                                for solving PCE and LCE on worst-case input codes over arbitrary finite fields F_q of block length n in 
+                                roughly 2^{n/2} time. This builds on and improves work of Babai (SODA 2011) and Nowakowski (PQCrypto 2025). 
+                                In particular, a similar randomized algorithm of Nowakowski solves LCE in 2^{n/2} time, but only on random 
+                                codes over fields of order q >= 7. I will then turn to giving reductions between code equivalence variants, 
+                                and between code equivalence and isomorphism problems on graphs and lattices. Based on two joint works: 
+                                (1) with Drisana Bhatia, Jean-François Biasse, Medha Durisheti, Lucas LaBuff, Vincenzo Pallozzi Lavorante, 
+                                and Philip Waitkevich, and (2) with Kaung Myat Htay Win.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- October 17 - TBD -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, October 17, 2025</div>
+                            <div class="talk-speaker">TBD</div>
+                        </div>
+                        <span class="talk-status status-no-talk">TBD</span>
+                    </div>
+                </div>
+
+                <!-- October 24 - TBD -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, October 24, 2025</div>
+                            <div class="talk-speaker">TBD</div>
+                        </div>
+                        <span class="talk-status status-no-talk">TBD</span>
+                    </div>
+                </div>
+
+                <!-- October 31 - TBD -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, October 31, 2025</div>
+                            <div class="talk-speaker">TBD</div>
+                        </div>
+                        <span class="talk-status status-no-talk">TBD</span>
+                    </div>
+                </div>
+
+                <!-- November 7 - TBD -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, November 7, 2025</div>
+                            <div class="talk-speaker">TBD</div>
+                        </div>
+                        <span class="talk-status status-no-talk">TBD</span>
+                    </div>
+                </div>
+
+                <!-- November 14 - TBD -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, November 14, 2025</div>
+                            <div class="talk-speaker">TBD</div>
+                        </div>
+                        <span class="talk-status status-no-talk">TBD</span>
+                    </div>
+                </div>
+
+                <!-- November 21 - TBD -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, November 21, 2025</div>
+                            <div class="talk-speaker">TBD</div>
+                        </div>
+                        <span class="talk-status status-no-talk">TBD</span>
+                    </div>
+                </div>
+
+                <!-- November 28 - Thanksgiving Break -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, November 28, 2025</div>
+                        </div>
+                        <span class="talk-status status-no-talk">Thanksgiving Break</span>
+                    </div>
+                </div>
+
+                <!-- December 5 - TBD -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, December 5, 2025</div>
+                            <div class="talk-speaker">TBD</div>
+                        </div>
+                        <span class="talk-status status-no-talk">TBD</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Matthew Gibson-Lopez | <a href="https://caicc.utsa.edu/computer-science/">UTSA Computer Science</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTalk(header) {
+            const talkItem = header.parentElement;
+            const details = talkItem.querySelector('.talk-details');
+            const isExpanded = talkItem.classList.contains('expanded');
+
+            if (isExpanded) {
+                talkItem.classList.remove('expanded');
+                details.style.maxHeight = '0';
+            } else {
+                talkItem.classList.add('expanded');
+                details.style.maxHeight = details.scrollHeight + 'px';
+            }
+        }
+    </script>
+</body>
+</html>
