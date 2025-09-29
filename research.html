@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Matthew Gibson-Lopez</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header {
+            background-color: #032044;
+            color: white;
+            padding: 2rem 0;
+            border-bottom: 4px solid #F15A22;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav li {
+            margin-right: 2rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 0;
+            color: #032044;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #F15A22;
+        }
+
+        nav a.active {
+            color: #F15A22;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: #032044;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        .coming-soon {
+            background-color: #f8f9fa;
+            padding: 3rem;
+            border-radius: 4px;
+            border-left: 3px solid #F15A22;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .coming-soon p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        footer {
+            background-color: #032044;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #F15A22;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav li {
+                margin-right: 1rem;
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Matthew Gibson-Lopez</h1>
+            <p>Associate Professor, Department of Computer Science</p>
+            <p>The University of Texas at San Antonio</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html" class="active">Research</a></li>
+            <li><a href="workforce.html">Workforce Development</a></li>
+            <li><a href="seminar_2025fall.html">Algorithms Seminar</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="research">
+            <h2>Research</h2>
+            <div class="coming-soon">
+                <p>This page is currently under construction and will be updated soon.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Matthew Gibson-Lopez | <a href="https://caicc.utsa.edu/computer-science/">UTSA Computer Science</a></p>
+        </div>
+    </footer>
+</body>
+</html>
