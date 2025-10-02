@@ -512,14 +512,41 @@
                     </div>
                 </div>
 
-                <!-- November 21 - TBD -->
+                <!-- November 21 - NEW TALK -->
                 <div class="talk-item">
-                    <div class="talk-header">
+                    <div class="talk-header" onclick="toggleTalk(this)">
                         <div class="talk-header-content">
                             <div class="talk-date">Friday, November 21, 2025</div>
-                            <div class="talk-speaker">TBD</div>
+                            <div class="talk-speaker">Buddhi Ashan Mallika Kankanamalage, UT San Antonio</div>
+                            <div class="talk-title">Extending Segment Tree for Polygon Clipping and Parallelizing using OpenMP and OpenACC Directives</div>
                         </div>
-                        <span class="talk-status status-no-talk">TBD</span>
+                        <span class="talk-status status-upcoming">Upcoming</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                A segment tree is a versatile tree-based data structure over intervals or line segments efficiently 
+                                supporting several computational operations such as stabbing query, segment arrangement, and planar 
+                                point location, both theoretically and practically. Polygon clipping is a basic operation in domains 
+                                such as Computer Graphics, Computer-aided Design, and Geographic Information Science (GIS). Given two 
+                                polygons with n vertices, polygon clipping algorithms find the geometric intersection or union in 
+                                O(n²) time using Foster's all-to-all edge intersection testing and O((n+k) log n) time using Vatti's 
+                                sweep line-based method, where k is the number of intersections. No known segment tree implementation, 
+                                including the CGAL library, supports intersection finding or polygon clipping. We extended the segment 
+                                tree leveraging Chaselle's PRAM-model augmentation, parallelized the construction of our augmented 
+                                segment tree, and employed it to find line segment intersections for polygon clipping while handling 
+                                degenerate cases. Augmented segment tree eliminates 99% of non-intersecting edge pairs compared to 63% 
+                                by the state-of-the-art filtering based on common minimum bounding rectangle method employed in Foster's 
+                                GPU-based implementation. This, coupled with Ω(n log n) work on a single CPU core, beats Foster's GPU 
+                                performance with O(n²) work. Our OpenMP directive based multi-core implementation achieves up to 4X 
+                                relative speedup for clipping two polygons with 182K vertices and 5X speedup for five polygons with 
+                                398K vertices. We also offloaded the parallel kernels to a GPU using OpenACC achieving performance 
+                                competitive with Foster's GPU implementation. Our profiling indicates limitations of the compiler 
+                                directives and potential for superior performance by employing pthread/cuda libraries.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
