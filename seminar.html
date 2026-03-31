@@ -491,7 +491,7 @@
                             <div class="talk-speaker">Alperen Ergur - UT San Antonio</div>
                             <div class="talk-title">Learning Fast Monomial Orders for Groebner Basis Computations</div>
                         </div>
-                        <span class="talk-status status-upcoming">Upcoming</span>
+                        <span class="talk-status status-completed">Completed</span>
                         <span class="expand-icon">▼</span>
                     </div>
                     <div class="talk-details">
@@ -503,6 +503,9 @@ The standard algorithmic engine for solving these systems is Gröbner basis comp
 We take a data driven approach by casting the selection of monomial orderings as a Reinforcement Learning (RL) problem over the space of admissible orderings.  The trained agents outperform human expert heuristics across the test cases, sometime reducing the computational cost up to 70%.  Related paper: https://arxiv.org/pdf/2602.02972
 Talk will assume no background in polynomials or related algorithms, necessary concepts will be reviewed.  As much as time permits, concepts from RL will also be explained.
 
+                            </div>
+                            <div class="talk-slides">
+                                <a href="slides/RL for Optimizing Gröbner Basis.pdf" target="_blank">📄 View Slides</a>
                             </div>
                         </div>
                     </div>
@@ -577,7 +580,7 @@ Talk will assume no background in polynomials or related algorithms, necessary c
                         <div class="talk-header-content">
                             <div class="talk-date">Friday, May 1, 2026</div>
                             <div class="talk-speaker">Dávid Papp - North Carolina State University</div>
-                            <div class="talk-title">Title TBD</div>
+                            <div class="talk-title">Dual certificates of set membership--rigorous proofs from inexact, numerical computation</div>
                         </div>
                         <span class="talk-status status-upcoming">Upcoming</span>
                         <span class="expand-icon">▼</span>
@@ -586,7 +589,10 @@ Talk will assume no background in polynomials or related algorithms, necessary c
                         <div class="talk-details-content">
                             <h4>Abstract</h4>
                             <div class="talk-abstract">
-                                Abstract to be announced.
+                                Numerical methods for continuous optimization problems usually return approximately feasible and approximately optimal solutions, and conventional wisdom suggests that this is the best we can do when the computations are done using inexact arithmetic. This is a problem in some applications such as the design and verification of mission-critical systems or computer-assisted theorem proving, where we need rigorous proofs that a solution attaining a certain (near-optimal) value exists, but solving the problems in exact arithmetic is prohibitively expensive. Because of this, numerical computation in these areas is followed up by expensive, often manual, post-processing that explicitly produces a rational vector that is exactly feasible or optimal.
+
+In this talk, we present a different approach, which allows us to compute numerical solutions of the dual optimization problem and then interpret them as rigorous (easily and independently verifiable) certificates. This circumvents the need for any problem-specific, manual post-processing. Counterintuitively, proofs of the existence of the desired solutions do not even involve the approximate computation of these solutions.
+
                             </div>
                         </div>
                     </div>
