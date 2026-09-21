@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms Seminar - Spring 2026 (Archive) - Matthew Gibson-Lopez</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        header {
+            background-color: #032044;
+            color: white;
+            padding: 2rem 0;
+            border-bottom: 4px solid #F15A22;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav li {
+            margin-right: 2rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 0;
+            color: #032044;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #F15A22;
+        }
+
+        nav a.active {
+            color: #F15A22;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: #032044;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #F15A22;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .seminar-info {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 3px solid #F15A22;
+            margin-bottom: 2rem;
+        }
+
+        .seminar-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .seminar-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .archive-notice {
+            background-color: #fff3cd;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            border-left: 3px solid #F15A22;
+            margin-bottom: 2rem;
+        }
+
+        .archive-notice p {
+            margin-bottom: 0.5rem;
+            color: #856404;
+        }
+
+        .archive-notice a {
+            color: #F15A22;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .archive-notice a:hover {
+            text-decoration: underline;
+        }
+
+        .archive-links {
+            background-color: #fff3cd;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            border-left: 3px solid #F15A22;
+            margin-bottom: 2rem;
+        }
+
+        .archive-links p {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #032044;
+        }
+
+        .archive-links a {
+            color: #F15A22;
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-weight: 500;
+        }
+
+        .archive-links a:hover {
+            text-decoration: underline;
+        }
+
+        .schedule {
+            margin-top: 2rem;
+        }
+
+        .talk-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .talk-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .talk-header {
+            padding: 1.25rem;
+            cursor: pointer;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .talk-header:hover {
+            background-color: #f8f9fa;
+        }
+
+        .talk-header-content {
+            flex: 1;
+        }
+
+        .talk-date {
+            font-weight: 600;
+            color: #032044;
+            margin-bottom: 0.25rem;
+        }
+
+        .talk-speaker {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .talk-title {
+            color: #666;
+            font-style: italic;
+        }
+
+        .talk-status {
+            font-size: 0.9rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            white-space: nowrap;
+            align-self: flex-start;
+        }
+
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-upcoming {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-no-talk {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+
+        .status-spring-break {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .expand-icon {
+            color: #F15A22;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            margin-left: 0.5rem;
+        }
+
+        .talk-item.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .talk-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f8f9fa;
+        }
+
+        .talk-details-content {
+            padding: 1.25rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .talk-details h4 {
+            color: #032044;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .talk-abstract {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .talk-slides {
+            margin-top: 1rem;
+        }
+
+        .talk-slides a {
+            color: #F15A22;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .talk-slides a:hover {
+            text-decoration: underline;
+        }
+
+        .no-talk-message {
+            padding: 1.25rem;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #032044;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #F15A22;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav li {
+                margin-right: 1rem;
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+            }
+
+            .talk-header {
+                flex-direction: column;
+            }
+
+            .talk-status {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Matthew Gibson-Lopez</h1>
+            <p>Associate Professor, Department of Computer Science</p>
+            <p>The University of Texas at San Antonio</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="workforce.html">Workforce Development</a></li>
+            <li><a href="seminar.html" class="active">Algorithms Seminar</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="seminar">
+            <h2>Algorithms Seminar - Spring 2026 (Archive)</h2>
+            
+            <div class="archive-notice">
+                <p><strong>📚 Archive Notice:</strong> This is an archived page from Spring 2026.</p>
+                <p>For the current semester's seminar schedule, visit <a href="seminar.html">Algorithms Seminar</a>.</p>
+            </div>
+
+            <div class="seminar-info">
+                <p>
+                    The Algorithms Seminar features roughly bi-weekly talks on topics related to algorithms and computational methods. 
+                    The topics are anything related to algorithms. We currently have in-house expertise in neuromorphic algorithms, 
+                    quantum algorithms, computational geometry, optimization algorithms, coding based cryptography, symbolic computation, 
+                    randomized numerical methods, reinforcement learning, and parallel algorithms.
+                </p>
+                <p style="margin-top: 1rem;">
+                    <strong>Time:</strong> Fridays, 10:00am - 11:00am<br>
+                    <strong>Location:</strong> Large Conference Room, NPB 3.108A, Main Campus
+                </p>
+            </div>
+
+            <div class="schedule">
+               
+                <!-- January 30 - Speaker 1 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, January 30, 2026</div>
+                            <div class="talk-speaker">Matthew Gibson-Lopez - UT San Antonio</div>
+                            <div class="talk-title">Building Intuition for Quantum Advantage: From Deutsch-Jozsa to Amplitude Estimation</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Quantum computing promises computational speedups, but understanding when and why quantum algorithms outperform classical ones requires building the right intuition. Last semester, we explored Deutsch's algorithm—a simple quantum algorithm that solves a particular function evaluation problem with just one query, whereas classical approaches require two. This talk begins by examining the natural generalization commonly taught in textbooks: the Deutsch-Jozsa algorithm, which extends the same quantum technique to functions on n-bit inputs. We'll then push further by relaxing the strict constant-versus-balanced restriction to see what happens when we estimate the majority class size through repeated quantum measurements. Surprisingly, this provides no advantage over classical random sampling—a result that helps clarify the boundaries of quantum speedup. However, this raises a compelling question: when does repeated quantum sampling help? We'll introduce amplitude estimation, a powerful generalization of Grover's algorithm that achieves a quadratic speedup for certain estimation problems, demonstrating where quantum coherence can reduce sampling variance in ways classical approaches cannot. Throughout, we'll maintain our discrete math perspective. No background in quantum mechanics assumed.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- February 6 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, February 6, 2026</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                <!-- February 13 - Speaker 2 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, February 13, 2026</div>
+                            <div class="talk-speaker">Jingbo Liu, Texas A&M University - San Antonio</div>
+                            <div class="talk-title">Lattice Basis Reduction and Their Algorithms</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                A lattice <i>L</i> is an additive discrete subgroup of ℝ<sup><i>n</i></sup>. 
+                                A set of linearly independent vectors <i>B</i> = {<b>b</b><sub>1</sub>, ..., <b>b</b><sub><i>n</i></sub>} ⊆ ℝ<sup><i>n</i></sup> 
+                                is called a basis of <i>L</i> if <i>L</i> = ℤ<b>b</b><sub>1</sub> + ⋯ + ℤ<b>b</b><sub><i>n</i></sub>. 
+                                When <i>n</i> ≥ 2, <i>L</i> has infinitely many possible bases. Bases consisting of relatively 
+                                short and nearly orthogonal vectors are considered good bases, while others are regarded as bad bases. 
+                                The lattice reduction theory studies how to obtain a good basis from a given one. In this talk, we will 
+                                explore several lattice basis reduction methods and algorithms, along with their applications in 
+                                cryptography and number theory.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- February 20 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, February 20, 2026</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                <!-- February 27 - Speaker 3 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, February 27, 2026</div>
+                            <div class="talk-speaker">Henry Chimal-Dzul - UT San Antonio</div>
+                            <div class="talk-title">Exploring Linear Codes for Code-Based Cryptography</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Code-based cryptography is one of the most promising candidates for Post-Quantum Cryptography. Indeed, the NIST has selected HQC as one of the standards for Post-Quantum Cryptography. In this talk, we explore some linear code constructions that have been used in this field, with emphasis on quasi-cyclic codes which are the ones implemented in HQC.  The presentation will be informal and suitable for a wide range of student in STEM fields.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- March 6 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, March 6, 2026</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                <!-- March 13 - Spring Break -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, March 13, 2026</div>
+                        </div>
+                        <span class="talk-status status-spring-break">Spring Break</span>
+                    </div>
+                </div>
+
+
+                <!-- March 20 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, March 20, 2026</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                
+                <!-- March 27 - Speaker 4 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, March 27, 2026</div>
+                            <div class="talk-speaker">Alperen Ergur - UT San Antonio</div>
+                            <div class="talk-title">Learning Fast Monomial Orders for Groebner Basis Computations</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Solving multivariate non-linear systems of polynomial equations is a ubiquitous task in computational science, essential to fields ranging from discrete optimization and statistical inference to computer vision, systems biology, and cryptography.
+The standard algorithmic engine for solving these systems is Gröbner basis computation. However, the efficiency of this method is highly sensitive to the choice of monomial ordering. Despite a near continuum of possible orders, current implementations overwhelmingly rely on static, expert-guided heuristics such as GrevLex.
+We take a data driven approach by casting the selection of monomial orderings as a Reinforcement Learning (RL) problem over the space of admissible orderings.  The trained agents outperform human expert heuristics across the test cases, sometime reducing the computational cost up to 70%.  Related paper: https://arxiv.org/pdf/2602.02972
+Talk will assume no background in polynomials or related algorithms, necessary concepts will be reviewed.  As much as time permits, concepts from RL will also be explained.
+
+                            </div>
+                            <div class="talk-slides">
+                                <a href="slides/RL for  Optimizing Gröbner Basis.pdf" target="_blank">📄 View Slides</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- April 3 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, April 3, 2026</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                <!-- April 10 - Speaker 5 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, April 10, 2026</div>
+                            <div class="talk-speaker">Bradley Theilman - Sandia National Laboratories</div>
+                            <div class="talk-title">Mental Math: Spiking Neuromorphic Circuits for Numerical Scientific Computing</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Brains are not commonly viewed as “good at arithmetic”, but counterintuitively, brain-like dynamics share deep analogies with iterative numerical algorithms. This talk will present a brain-inspired, spiking, neuromorphic algorithm for solving large, sparse linear systems (Ax = b) such as those arising in Finite Element Methods for solving partial differential equations (PDEs), one of the most important techniques in modern numerical science and engineering.  The algorithm embeds the sparse matrix into the synaptic connections between subpopulations of neurons directly without training or learning.  Neural dynamics are defined so that the collective spiking activity of the whole network flows to an efficient spiking representation of the solution vector x, with comparable numerical accuracy to traditional algorithms.  I’ll demonstrate this algorithm on real neuromorphic hardware (Intel’s Loihi 2) and show close to ideal strong and weak scaling.  I’ll also demonstrate the generality of the algorithm through several examples of PDEs in 2 and 3 dimensions, with nontrivial mesh topologies, and different boundary conditions. This work establishes a direct connection between established numerical methods for PDEs and brain-like spiking neural networks, demonstrating the value of brain inspiration, and expanding the neuromorphic footprint in scientific computing. More details are available in the paper: https://www.nature.com/articles/s42256-025-01143-2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- April 17 - Speaker 6 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, April 17, 2026</div>
+                            <div class="talk-speaker">Johannes Bauer - UT San Antonio</div>
+                            <div class="talk-title">A Simple Introduction to Topological Data Analysis and Implications for Machine Learning</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Deep neural network research often analyzes models through the lens of function approximation, yet understanding what these models learn remains a difficult challenge. An alternative approach to model introspection is to study the data models are trained on and how this data is transformed. In this approach, tools from topology are used to analyze the structure of datasets and how topological features in the data evolve within the model. Tools that allow us to characterize this structure belong to the field of Topological Data Analysis. In this talk, we introduce Topological Data Analysis (TDA) and standard algorithms for analyzing datasets. We begin by briefly motivating the use of TDA for model introspection and give an overview of the theory underlying these algorithms. Afterward, we walk through two key algorithms used in TDA: mapper diagrams and persistence diagrams. Finally, we highlight basic applications of these TDA methods in analyzing and understanding machine learning models. Ultimately, the goal of this talk is to provide a foundational overview of standard techniques in TDA and illustrate how they can offer insight into the behavior of modern machine learning models.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- April 24 - No talk -->
+                <div class="talk-item">
+                    <div class="talk-header">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, April 24, 2026</div>
+                        </div>
+                        <span class="talk-status status-no-talk">No Talk</span>
+                    </div>
+                </div>
+
+                <!-- May 1 - Speaker 7 -->
+                <div class="talk-item">
+                    <div class="talk-header" onclick="toggleTalk(this)">
+                        <div class="talk-header-content">
+                            <div class="talk-date">Friday, May 1, 2026</div>
+                            <div class="talk-speaker">Dávid Papp - North Carolina State University</div>
+                            <div class="talk-title">Dual certificates of set membership--rigorous proofs from inexact, numerical computation</div>
+                        </div>
+                        <span class="talk-status status-completed">Completed</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+                                Numerical methods for continuous optimization problems usually return approximately feasible and approximately optimal solutions, and conventional wisdom suggests that this is the best we can do when the computations are done using inexact arithmetic. This is a problem in some applications such as the design and verification of mission-critical systems or computer-assisted theorem proving, where we need rigorous proofs that a solution attaining a certain (near-optimal) value exists, but solving the problems in exact arithmetic is prohibitively expensive. Because of this, numerical computation in these areas is followed up by expensive, often manual, post-processing that explicitly produces a rational vector that is exactly feasible or optimal.
+
+In this talk, we present a different approach, which allows us to compute numerical solutions of the dual optimization problem and then interpret them as rigorous (easily and independently verifiable) certificates. This circumvents the need for any problem-specific, manual post-processing. Counterintuitively, proofs of the existence of the desired solutions do not even involve the approximate computation of these solutions.
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Matthew Gibson-Lopez | <a href="https://caicc.utsa.edu/computer-science/">UTSA Computer Science</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTalk(header) {
+            const talkItem = header.parentElement;
+            const details = talkItem.querySelector('.talk-details');
+            const isExpanded = talkItem.classList.contains('expanded');
+
+            if (isExpanded) {
+                talkItem.classList.remove('expanded');
+                details.style.maxHeight = '0';
+            } else {
+                talkItem.classList.add('expanded');
+                details.style.maxHeight = details.scrollHeight + 'px';
+            }
+        }
+    </script>
+</body>
+</html>
