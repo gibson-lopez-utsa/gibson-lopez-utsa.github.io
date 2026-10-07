@@ -395,13 +395,22 @@
 
                 <!-- October 9 - Speaker 2 -->
                 <div class="talk-item">
-                    <div class="talk-header">
+                    <div class="talk-header" onclick="toggleTalk(this)">
                         <div class="talk-header-content">
                             <div class="talk-date">Friday, October 9, 2026</div>
                             <div class="talk-speaker">Vinny Miller - UT San Antonio</div>
-                            <div class="talk-title">Title TBD</div>
+                            <div class="talk-title">Reinforcement Learning for Power-Flow Network Analysis</div>
                         </div>
                         <span class="talk-status status-upcoming">Upcoming</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="talk-details">
+                        <div class="talk-details-content">
+                            <h4>Abstract</h4>
+                            <div class="talk-abstract">
+The power flow equations are non-linear multivariate equations that describe the relationship between power injections and bus voltages of electric power networks. Given a network topology, we are interested in finding network parameters with many equilibrium points. This corresponds to finding instances of the power flow equations with many real solutions. Current state-of-the art algorithms in computational algebra are not capable of answering this question for networks involving more than a small number of variables. To remedy this, we design a probabilistic reward function that gives a good approximation to this root count, and a state-space that mimics the space of power flow equations. We derive the average root count for a Gaussian model, and use this as a baseline for our RL agents. The agents discover instances of the power flow equations with many more solutions than the average baseline, and remain a tractable method for doing so as the network size grows. This demonstrates the potential of RL for power-flow network design and analysis as well as the potential for RL to contribute meaningfully to problems that involve complex non-linear algebra or geometry.
+                            </div>
+                        </div>
                     </div>
                 </div>
 
